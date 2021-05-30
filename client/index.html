@@ -20,6 +20,7 @@
     <script src="components/chats/chats.component.js"></script>
     <script src="components/analytics/forms.component.js"></script>
     <script src="components/register/register.component.js"></script>
+    <script src="components/dashboard/dashboard.component.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
@@ -38,20 +39,21 @@
     <div ng-app="mainApp" ng-controller="CRUD as pc">
     <div class="MainHeader">
         <hr>       
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="viewschools" ng-click="isCollapsed = !isCollapsed">View Schools</button>
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="addschools" ng-click="isCollapsed = !isCollapsed">Add Schools</button>
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="viewstudents" ng-click="isCollapsed = !isCollapsed">View Students</button>
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="addstudents" ng-click="isCollapsed = !isCollapsed">Add Students</button>
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="analytics" ng-click="isCollapsed = !isCollapsed">Analytics</button>
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="chatdata" ng-click="isCollapsed = !isCollapsed">Chat</button>
+        <!-- <button type="button" class="btn btn-default BtnStyle" ui-sref="viewschools" ng-click="isCollapsed = !isCollapsed">View Schools</button> -->
+        <!-- <button type="button" class="btn btn-default BtnStyle" ui-sref="addschools" ng-click="isCollapsed = !isCollapsed">Add Schools</button> -->
+        <!-- <button type="button" class="btn btn-default BtnStyle" ui-sref="viewstudents" ng-click="isCollapsed = !isCollapsed">View Students</button> -->
+        <!-- <button type="button" class="btn btn-default BtnStyle" ui-sref="addstudents" ng-click="isCollapsed = !isCollapsed">Add Students</button> -->
+        <!-- <button type="button" class="btn btn-default BtnStyle" ui-sref="analytics" ng-click="isCollapsed = !isCollapsed">Analytics</button> -->
+        <!-- <button type="button" class="btn btn-default BtnStyle" ui-sref="chatdata" ng-click="isCollapsed = !isCollapsed">Chat</button> -->
+        
         <button type="button" class="btn btn-default BtnStyle" ui-sref="signup" ng-click="isCollapsed = !isCollapsed">SignUp</button>
-        <button type="button" class="btn btn-default BtnStyle" ng-click="pc.open()">Login</button>
+        <button type="button" class="btn btn-default BtnStyle" ui-sref="login" ng-click="isCollapsed = !isCollapsed">Login</button>
+        <button type="button" class="btn btn-default BtnStyle" ui-sref="dashboard" ng-click="isCollapsed = !isCollapsed">dashboard</button>
+        <!-- <button type="button" class="btn btn-default BtnStyle" ng-click="pc.open()">Login</button> -->
         <hr>     
-      <ui-view></ui-view>
-    
+      <ui-view></ui-view>    
     </div>
-  
-    
+      
 </div>
 
 </body>

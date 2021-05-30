@@ -16,6 +16,7 @@ const school = new mongoose.Schema({
 
 School = mongoose.model('school', school);
 
+
 // School.insertMany([
 //   {   
 //     schoolName: "abc",

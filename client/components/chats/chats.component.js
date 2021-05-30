@@ -11,29 +11,33 @@ function Addchat($scope, $uibModal) {
     }, 100);
   }
 
-  // var text = document.getElementByIdById('text').value;
   $scope.msgthreadlists = [];
   $scope.sendmsg=function() {   
     var msg = $scope.msg;
     sock.send(msg);  
-    // $scope.msgthreadlists.push(msg);
-    // console.log(msgthreadlists, 'message threadlist');
     clearData();
   }
-
-  $scope.htmlStr = "hellooo"
 
   function clearData() {        
     $scope.msg='';
 }
-
   sock.onmessage = function(event){
-    console.log(event.data, 'data');   
+    console.log(event.data, 'data'); 
+     
+    document.getElementById("chats").innerHTML += event.data + "<br>";
     $scope.msgthreadlists.push(event.data);
   }
 
+  document.getElementById('chat-section')
+    .addEventListener('keyup', function(event) {
+        if (event.code === 'Enter')
+        {
+            event.preventDefault();
+            document.querySelector('form').submit();
+        }
+    });
+
 }
- 
  app.component('chats',{
      templateUrl: 'components/chats/chats.html',
      controller: Addchat,

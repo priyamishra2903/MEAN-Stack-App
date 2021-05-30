@@ -1,6 +1,6 @@
 function RegisterUser($scope, $uibModal, mainService) {
 
-    $scope.RegisterUser=function() {     console.log('indhfhf');
+    $scope.RegisterUser=function() {  console.log('indhfhf');
 
         let user = {           
             name:$scope.name,
@@ -13,7 +13,6 @@ function RegisterUser($scope, $uibModal, mainService) {
          mainService.add(value, user); 
         clearData();
     }
-
     function clearData() {        
         $scope.name='';
         $scope.email='';

@@ -1,6 +1,9 @@
 const User  = require('../models/User');
 const bcrypt = require('bcrypt')
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const token = "hello";
+require('dotenv').config();
 
  exports.login = async (req, res) => {
     console.log('isnide logn');
@@ -11,7 +14,7 @@ const passport = require('passport');
       res.json({ message:err});
       }
   
-    }
+}
 
 exports.register= async (req, res) => {
         console.log('isnide logn');
@@ -48,13 +51,13 @@ exports.registerUser = async (req, res) => {
       res.send(errors)
     }
     else {
+       
         const newUser = new User({
           name,
           email,
           password
         });
 
-        console.log(newUser, 'new user', errors);
         bcrypt.genSalt(10, (err, salt) => {
             console.log('isihhff', salt);
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -73,12 +76,21 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res, next) => {
+    
+    // console.log(req.body);
+    const {email, password} = req.body
+    const newUser = {email : email}
+    let accesstoken = jwt.sign(newUser, process.env.ACCESS_TOKEN_SECRET)
+    console.log(accesstoken);
+
     passport.authenticate('local', {
         successRedirect: 'http://localhost:3000/api/user/dashboard',
         failureRedirect: 'http://localhost:3000/api/user/login',
         failureFlash: true
       })(req, res, next);  
+    res.json(accesstoken) 
 }
+
 
 
 

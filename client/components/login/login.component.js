@@ -1,24 +1,40 @@
-function ModalInstanceCtrl(data, $uibModalInstance) {
+function LoginCtrl( $scope, mainService) {
 
-    let pc = this;
-    pc.data = data;    
-    pc.ok = function () {
-      //{...}
-      $uibModalInstance.close();
-    };
-  
-    pc.cancel = function () {
-      //{...}
-      $uibModalInstance.dismiss('cancel');
-    };
+
+$scope.LoginUser=function() {  console.log('iside f login');
+ $scope.LoginUser=function() {  console.log('iside f login');
+
+ let user = {           
+
+     email:$scope.email,
+     password:$scope.password
+  }
+   console.log('user',user);
+   value = 'user/login'
+  mainService.add(value, user); 
+ clearData();
+}
+
+function clearData() {        
+ $scope.name='';
+ $scope.email='';
+ $scope.password='';
+ $scope.password2='';
+} 
+
+ 
+}
+
+
+
 
   
 }
  
- app.component('logindata',{
+ app.component('login',{
      templateUrl: 'components/login/login.html',
-     controller: ModalInstanceCtrl,
-     controllerAs: 'pc',
+     controller: LoginCtrl,
+     controllerAs: 'vm',
  })
  
 

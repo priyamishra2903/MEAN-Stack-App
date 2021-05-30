@@ -2,6 +2,7 @@ function SchoolListController(mainService, $scope, Schoolfactory) {
     var vm = this;  
     let value1 = 'school'
     let value2 =  'student'
+    console.log('hrelloooo');
     let schoolobj = new Schoolfactory();
     mainService.get(value1).then(function(response) {        
         vm.schools = response.data;              

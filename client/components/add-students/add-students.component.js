@@ -1,5 +1,6 @@
 function AddStudentController(mainService, $scope, Studentfactory) { 
    let value = 'student'
+   console.log('hi');
    let studentobj = new Studentfactory();
     $scope.AddStudent=function($http) {               
         let student = {           

@@ -1,9 +1,6 @@
-
+<form class="Chat">
 <input type="text" placeholder="Your message here" ng-model="msg">
-<button ng-click = "sendmsg()">send hello</button>
-<div ng-model ="chat" ng-repeat=" msgthreadlist in msgthreadlists"> {{msgthreadlist}}</div>
-
-
-
-
+<button ng-click = "sendmsg()" id="chat-section">SEND</button>
+<div id="chats"></div>
+</form>
 
