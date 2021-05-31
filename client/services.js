@@ -12,7 +12,7 @@ app.service('mainService', function($http, $q) {
             reject('There is an ERROR');
       })
       .catch(err =>{
-        console.log(reject, err);
+        console.log(err, 'ERROR');
       });                   
     };  
 
@@ -28,7 +28,7 @@ app.service('mainService', function($http, $q) {
                 reject('There is an ERROR');
         })             
         .catch(err =>{
-              console.log(err, reject);
+              console.log('ERROR');
         });            
      }; 
     

@@ -1,29 +1,27 @@
 <div class="modal-header FormStyle">
 <form name="myForm" novalidate required>
 
-<p>Username:<br>
-<input type="text" name="user" ng-model="user" required>
-<!-- <span style="color:red" ng-show="myForm.user.$dirty myForm.user.$invalid myForm.user.$touched">
-<span ng-show="myForm.user.$error.required">Username is required.</span> -->
-</span>
-
-
 <p>Email:<br>
 <input type="email" name="email" ng-model="email" required>
 <!-- <span style="color:red" ng-show="myForm.email.$dirty myForm.email.$invalid myForm.email.$touched">
 <span ng-show="myForm.email.$error.required">Email is required.</span>
-<span ng-show="myForm.email.$error.email">Invalid email address.</span>
-</span> -->
+<span ng-show="myForm.email.$error.email">Invalid email address.</span> -->
+</span>
 </p>
 <p>Password<br>
 <input type="password" name="password" ng-model="password" required>
 </p>
 
-<button class="btn btn-primary" type="button" ng-disabled="!user || !email" ng-click="LoginUser()" ui-sref="dashboard">Submit</button>
+<button class="btn btn-primary" type="button"  ng-click="LoginUser()">Submit</button>
 
-<button class="btn btn-primary" type="button" ui-sref="dashboard">Submit</button>
+<div id="loginmsg" class="chatStyle" >hi</div>
 
 </form>
-
-
 </div>
+
+<!-- <button class="btn btn-primary" type="button"  ng-hide="check()">check</button> -->
+
+<div ng-show= "a">
+    <button type="button" class="btn btn-default BtnStyle" ui-sref="dashboard">dashboard</button>
+</div>
+ 

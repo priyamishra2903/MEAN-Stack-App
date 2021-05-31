@@ -1,10 +1,7 @@
 body {
-  background-color:#bef7cc;
+  background-color: black;
 }
 
-.hr{
-    background-color: black;
-}
 
 .MainHeader{
     align-items: right;
@@ -26,13 +23,13 @@ body {
 }
 
 .FormStyle{
-    color: blue;
+    color:green;
     align-items: center;
-    width: 500px;
-    padding: 100px;
-    padding-top: 100px;
+    padding-top: 10px;
     vertical-align: middle;
+    font-size: 20px;
 }
+
 
 .dltbtn{
     color: #212529;
@@ -89,4 +86,22 @@ body {
   align-items: center;
 
 }
+
+.Chat{
+ width: 400px;
+ align-items: center;
+ padding-left: 200px;
+ padding-top: 30px;
+ 
+}
+
+.chatStyle{
+  width: 200px;
+  color: yellow;
+  padding-top: 60px;
+  padding-left: 200px;
+  font-size: 14px;
+ }
+
+
 
