@@ -2,9 +2,8 @@
 
 function RegisterUser($scope, $uibModal, mainService) {
     let vm = this;
-
+   //function to register a user
     $scope.RegisterUser=function() {  console.log('indhfhf');
-
         let user = {           
             name:$scope.name,
             email:$scope.email,
@@ -16,13 +15,13 @@ function RegisterUser($scope, $uibModal, mainService) {
          mainService.add(value, user).then(function(response) {   
             vm.login = response.data;  
             if(response.data.length!=null){
-                document.getElementById("rgistermsg").innerHTML = 'User Registered Successfull';             
+                document.getElementById("rgistermsg").innerHTML = 'User Registered Successfull';     //display sucessfull registration message        
             }
             else{
                console.log(response.data, 'error');
 
             $scope.a = false;   
-            document.getElementById("rgistermsg").innerHTML = response.data.error;  
+            document.getElementById("rgistermsg").innerHTML = response.data.error;  //to display error
            }
              
            })  

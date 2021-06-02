@@ -2,6 +2,8 @@
 app.service('mainService', function($http, $q, AuthFactory) {
   const baseUrl = 'http://localhost:3000/api/'
     this.get = function(value){     
+
+      //get api call
       return $q(function(resolve, reject) { 
         let token=  AuthFactory.authToken();
         const headers = { 'content-type': 'application/json', 'Authorization':token}                 
@@ -18,7 +20,8 @@ app.service('mainService', function($http, $q, AuthFactory) {
     };  
 
     this.add= function(value, data){     
-       console.log('infhhf');   
+      
+         //post api call
         return $q(function(resolve, reject) {    
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}     
@@ -35,6 +38,8 @@ app.service('mainService', function($http, $q, AuthFactory) {
      }; 
     
     this.delete = function(value , index){
+
+       //delete api call
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -50,6 +55,8 @@ app.service('mainService', function($http, $q, AuthFactory) {
     }; 
 
     this.getRankingStudents = function(value){     
+
+      //api call to get studnets ranking
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -64,7 +71,9 @@ app.service('mainService', function($http, $q, AuthFactory) {
         });                   
       }; 
  
-    this.getRankingSchools = function(value){     
+    this.getRankingSchools = function(value){   
+       
+      // api call to schools ranking
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -77,8 +86,11 @@ app.service('mainService', function($http, $q, AuthFactory) {
         .catch(err =>{
           console.log(reject, err);
         });                   
-      };      
-    this.gettopsub1 = function(value){     
+      };     
+
+    this.gettopsub1 = function(value){    
+      
+      //api call to get topper of subject 1
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -93,7 +105,9 @@ app.service('mainService', function($http, $q, AuthFactory) {
         });                   
       };    
     
-    this.gettopsub2 = function(value){     
+    this.gettopsub2 = function(value){  
+      
+       //api call to get topper of subject 2
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -109,7 +123,9 @@ app.service('mainService', function($http, $q, AuthFactory) {
       };    
 
 
-    this.gettopstudent = function(value){     
+    this.gettopstudent = function(value){    
+      
+      //api call to get the topper 
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -124,7 +140,9 @@ app.service('mainService', function($http, $q, AuthFactory) {
         });                   
       };    
 
-    this.gettopsubject = function(value){     
+    this.gettopsubject = function(value){   
+      
+      //api call to get the best subject
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    
@@ -139,7 +157,9 @@ app.service('mainService', function($http, $q, AuthFactory) {
         });                   
       };  
 
-    this.gettopschool = function(value){     
+    this.gettopschool = function(value){    
+      
+      //api call to get top school
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
           const headers = { 'content-type': 'application/json', 'Authorization':token}    

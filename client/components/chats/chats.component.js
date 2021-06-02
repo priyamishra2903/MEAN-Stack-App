@@ -11,13 +11,11 @@ function Addchat($scope, $uibModal, AuthFactory) {
       $scope.a = false;   
       console.log($scope.a, 'false condition');
   }   
-
-  // var sock = new WebSocket("wss://echo.websocket.org");
+  //socket connection
   var sock = new WebSocket("ws://localhost:5001");
 
   sock.onopen = function(event){
     console.log('conneted through socket', event);
-    // alert("successfull connection");
     setTimeout(function(){
     }, 100);
   }
@@ -33,8 +31,7 @@ function Addchat($scope, $uibModal, AuthFactory) {
     $scope.msg='';
 }
   sock.onmessage = function(event){
-    console.log(event.data, 'data'); 
-     
+    console.log(event.data, 'data');      
     document.getElementById("chats").innerHTML += event.data + "<br>";
     $scope.msgthreadlists.push(event.data);
   }

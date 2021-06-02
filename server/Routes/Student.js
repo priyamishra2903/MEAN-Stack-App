@@ -3,7 +3,7 @@ const StudentController = require('../Controllers/Student');
 const Studentroute = express.Router();
 const Userroute = express.Router();
 
-//Routes
+//Student Routes
 Studentroute.get('/', StudentController.getStudents);
 Studentroute.post('/', StudentController.addStudents);
 Studentroute.delete('/:id', StudentController.deleteStudent );

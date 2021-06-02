@@ -1,6 +1,7 @@
 
 var app= angular.module("mainApp", ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize']);
 
+//main controller
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -42,69 +43,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       })
 })
 
-app.controller("CRUD", function($scope, $uibModal) {
+app.controller("CRUD", function($scope) {
 
   $scope.isCollapsed = false;
-  let pc = this;
-  pc.hello ='hello';
-  // pc.fruits = ['aa', 'aa', 'dhdh'];
-  // pc.open = function (size) {
-  //   let modalInstance = $uibModal.open({
-  //     animation: true,
-  //     ariaLabelledBy: 'modal-title',
-  //     ariaDescribedBy: 'modal-body',
-      
-  //     templateUrl: 'components/login/login.html',
-  //     controller: 'ModalInstanceCtrl',
-  //     controllerAs: 'pc',
-  //     size: size,
-  //     resolve: {
-  //       data: function () {
-  //         return pc.data;
-  //       }
-  //     }
-  //   });
 
-  //   modalInstance.result.then(function () {
-  //   });
-  // };
-
-})
-
-// app.controller('ModalInstanceCtrl', function ($uibModalInstance, data,  $scope, mainService) {
-//   let pc = this;
-//   pc.data = data;
-//  pc.hello = 'hellooo'
-
-//  $scope.LoginUser=function() {  console.log('iside f login');
-
-//  let user = {           
-
-//      email:$scope.email,
-//      password:$scope.password
-//   }
-//    console.log('user',user);
-//    value = 'user/login'
-//   mainService.add(value, user); 
-//  clearData();
-// }
-
-// function clearData() {        
-//  $scope.name='';
-//  $scope.email='';
-//  $scope.password='';
-//  $scope.password2='';
-// } 
-
-  
-//   pc.ok = function () {
-//     //{...}
-//     $uibModalInstance.close();
-//   };
-
-//   pc.cancel = function () {
-//     //{...}
-//     $uibModalInstance.dismiss('cancel');
-//   };
-// });
-
+});

@@ -1,112 +1,100 @@
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
+
+// Load input validation
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
+
+// Load User model
 const User  = require('../models/User');
-const bcrypt = require('bcrypt')
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const token = "hello";
-require('dotenv').config();
 
- exports.login = async (req, res) => {
-    console.log('isnide logn');
-    try {    
-      res.json('try login again, failed login');
-    }
-    catch(err){
-      res.json({ message:err});
-      }
-  
-}
-
-exports.register= async (req, res) => {
-        console.log('isnide logn');
-        try {    
-          res.json('try login again, failed login');
-        }
-        catch(err){
-          res.json({ message:err});
-          }
-      
-        }   
-exports.registerUser = async (req, res) => {
-    const {name , email, password, password2} = req.body
-    // console.log(req.body);
-    let errors = [];
-
-  if (!name || !email || !password || !password2) {
-    errors.push({ msg: 'Please enter all fields' });
-  }
-
-  if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
-  }
-
-  if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
-  }
-
-  console.log(errors);
-
-  try {  
-
-  if (errors.length > 0) {
-      res.send(errors)
-    }
-    else {
-       
-        const newUser = new User({
-          name,
-          email,
-          password
-        });
-
-        bcrypt.genSalt(10, (err, salt) => {
-            console.log('isihhff', salt);
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save()
-            res.json(newUser);  
-          });
-        });
-  }
-}
-  catch(err){
-    res.json({ message:err});
-  }
-
-};
-
-exports.loginUser = async (req, res, next) => {
+exports.register = async (req, res) => {
+  //Form validation
+  const {errors, isValid} = validateRegisterInput(req.body);
     
-    // console.log(req.body);
-    const {email, password} = req.body
-    const newUser = {email : email}
-    let accesstoken = jwt.sign(newUser, process.env.ACCESS_TOKEN_SECRET)
-    console.log(accesstoken);
+  if(!isValid){
+      console.log(errors);
+      return res.status(400).send(errors);        
+  }
 
-    passport.authenticate('local', {
-        successRedirect: 'http://localhost:3000/api/user/dashboard',
-        failureRedirect: 'http://localhost:3000/api/user/login',
-        failureFlash: true
-      })(req, res, next);  
-    res.json(accesstoken) 
-}
+  User.findOne({email:req.body.email}).then(user=>{
 
+      if(user){
+          return res.status(400).send({error:"Email already exists"});
+      } else{
+          const newUser = new User({
+              name:req.body.name,
+              password:req.body.password,
+              email:req.body.email
+          });
 
-
-
-exports.dashboard = async (req, res) => {
-    res.send('Succesfully loggedin')
-}
-
-
-exports.logout = async (req, res) => {
-    req.logout();
-    res.redirect('http://localhost:3000/api/user/login');
-    res.send('Succesfully loggedin')
-}
-
-
-
+          // Hash password before storing in database
+          const rounds  = 10;
+          bcrypt.genSalt(rounds, (err, salt) => {
+              bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser
+                  .save()
+                  .then(user => res.json(user))
+                  .catch(err => console.log(err));
+              });
+          });
+      }
+  });
  
+}
 
+exports.login = async (req, res) => {
+  //Form Valdiation
+  const {errors, isValid} = validateLoginInput(req.body);
+
+  if (!isValid) {
+      return res.status(400).json(errors);
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+ 
+  //Find user by Email
+  User.findOne({email}).then(user=>{
+      if(!user){
+          return res.status(404).json({ emailnotfound: "Email not found" });
+      }
+
+  // Check password
+  bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+          // Create JWT Payload
+          const payload = {
+              id: user.id,
+              name: user.name
+          };
+
+          // Sign token
+          jwt.sign(
+              payload,
+              keys.secretOrKey,
+              {
+               expiresIn: 100000
+              },
+              (err, token) => {
+              res.json({
+                  success: true,
+                  token: "Bearer " + token
+              });
+              }
+          );
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
+ 
+}
 

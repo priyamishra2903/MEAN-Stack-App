@@ -1,4 +1,4 @@
-
+// factory to calculate the total marks obtained by students
 app.factory('mainFactory', function() {
     let factoryObject = {};
     factoryObject.getTotal = function(marks1, marks2) { 
@@ -8,6 +8,7 @@ app.factory('mainFactory', function() {
     return factoryObject;
 });
 
+// factory to handle bearer token and authorization 
 app.factory('AuthFactory', function() {
   console.log('isnide auth1');
   let factoryObject = {};
@@ -25,6 +26,7 @@ app.factory('AuthFactory', function() {
   return factoryObject;
 });
 
+//factory to Validate school data
 app.factory('Schoolfactory', function(mainService) {
     function Schoolfactory(schoolName, location){
       let self = this;
@@ -43,6 +45,8 @@ app.factory('Schoolfactory', function(mainService) {
     }
     return (Schoolfactory);    
 });
+
+//factory to Validate student data
 
 app.factory('Studentfactory', function(mainService) {
      let value ='student';  
@@ -65,8 +69,6 @@ app.factory('Studentfactory', function(mainService) {
     }
     return (Studentfactory);    
 });
-
-
 
 
 // app.factory('Schoolfactory', function(mainService, $q) {

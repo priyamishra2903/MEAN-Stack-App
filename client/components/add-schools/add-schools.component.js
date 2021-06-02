@@ -6,10 +6,8 @@ function AddSchoolController(mainService, $scope, Schoolfactory) {
         schoolName:$scope.schoolName,
         location:$scope.location,
        }
-
        let schoolobj = new Schoolfactory();
        schoolobj.addSchooldata(school);
-    //    mainService.add(value, school);
        clearData();
 
     }
@@ -17,7 +15,6 @@ function AddSchoolController(mainService, $scope, Schoolfactory) {
         $scope.schoolName='';
         $scope.location='';
     }
-
 }
 
 app.component('addSchools',{

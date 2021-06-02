@@ -1,22 +1,24 @@
+//checking working of async
+
 const async = require('async');
 
-// async.parallel([
-//     function(callback) {
-//       setTimeout(function() {
-//         console.log('Task One');
-//         callback(null, 1);
-//       }, 200);
-//     },
-//     function(callback) {
-//       setTimeout(function() {
-//         console.log('Task Two');
-//         callback(null, 2);
-//       }, 100);
-//     }
-//   ],
-//   function(err, results) {
-//     console.log(results);  //task two, task1 [1,2]
-//   });
+async.parallel([
+    function(callback) {
+      setTimeout(function() {
+        console.log('Task One');
+        callback(null, 1);
+      }, 200);
+    },
+    function(callback) {
+      setTimeout(function() {
+        console.log('Task Two');
+        callback(null, 2);
+      }, 100);
+    }
+  ],
+  function(err, results) {
+    console.log(results);  //task two, task1 [1,2]
+  });
 
 
   async.parallel({
