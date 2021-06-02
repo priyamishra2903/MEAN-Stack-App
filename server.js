@@ -77,8 +77,8 @@ const SchoolRoute = require('./server/Routes/School');
 const UserRoute = require('./server/Routes/User');
 
 app.use(cors());
-// app.use('/api/student', passport.authenticate('jwt', { session: false }),StudentRoute);
-app.use('/api/student', StudentRoute);
+app.use('/api/student', passport.authenticate('jwt', { session: false }),StudentRoute);
+// app.use('/api/student', StudentRoute);
 app.use('/api/school',SchoolRoute);
 app.use('/api/user',UserRoute);
 

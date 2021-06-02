@@ -1,4 +1,5 @@
-function StudentListController(mainService, $scope, mainFactory) {
+function StudentListController(mainService, $scope, mainFactory, AuthFactory) {
+
     var vm = this;
     const value = 'student'
     mainService.get(value).then(function(response) {

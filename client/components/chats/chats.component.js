@@ -1,4 +1,16 @@
-function Addchat($scope, $uibModal) {
+function Addchat($scope, $uibModal, AuthFactory) {
+
+  let vm =this;
+  vm.token=  AuthFactory.authToken();
+  console.log(vm.token, 'inside dashboard');
+  if(vm.token!=undefined){
+      $scope.a = true;
+      console.log($scope.a, 'true condition');
+  }
+  else{
+      $scope.a = false;   
+      console.log($scope.a, 'false condition');
+  }   
 
   // var sock = new WebSocket("wss://echo.websocket.org");
   var sock = new WebSocket("ws://localhost:5001");
@@ -7,7 +19,6 @@ function Addchat($scope, $uibModal) {
     console.log('conneted through socket', event);
     // alert("successfull connection");
     setTimeout(function(){
-      // sock.send("hi there");
     }, 100);
   }
 

@@ -8,6 +8,23 @@ app.factory('mainFactory', function() {
     return factoryObject;
 });
 
+app.factory('AuthFactory', function() {
+  console.log('isnide auth1');
+  let factoryObject = {};
+  var token1;
+  factoryObject.getToken = function(token) { 
+    console.log('logout', token);
+    token1 = token;
+    return token
+  };  
+  console.log(token1, 'dh');
+  
+  factoryObject.authToken = function() { 
+    return token1
+  }; 
+  return factoryObject;
+});
+
 app.factory('Schoolfactory', function(mainService) {
     function Schoolfactory(schoolName, location){
       let self = this;
@@ -15,6 +32,7 @@ app.factory('Schoolfactory', function(mainService) {
       self.location = location;   
     }  
     let value ='school';
+
     Schoolfactory.prototype = {
       addSchooldata : function(school){
         mainService.add(value, school)
@@ -27,7 +45,8 @@ app.factory('Schoolfactory', function(mainService) {
 });
 
 app.factory('Studentfactory', function(mainService) {
-    function Studentfactory(name, className, sub1, sub2, schoolName){
+     let value ='student';  
+      function Studentfactory(name, className, sub1, sub2, schoolName){
       let self = this;
       self.name = name;
       self.className = className;   
@@ -35,7 +54,7 @@ app.factory('Studentfactory', function(mainService) {
       self.sub2 = sub2;  
       self.schoolName = schoolName;
     }  
-    let value ='student';
+  
     Studentfactory.prototype = {
       addStudentdata : function(student){
         mainService.add(value, student)

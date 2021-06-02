@@ -1,12 +1,13 @@
-const baseUrl = 'http://localhost:3000/api/'
-const headers = { 'content-type': 'application/json'}  
 
-app.service('mainService', function($http, $q) {
+app.service('mainService', function($http, $q, AuthFactory) {
+  const baseUrl = 'http://localhost:3000/api/'
     this.get = function(value){     
       return $q(function(resolve, reject) { 
+        let token=  AuthFactory.authToken();
+        const headers = { 'content-type': 'application/json', 'Authorization':token}                 
         if(value.length!=0) {
             console.log(baseUrl + value);
-            resolve($http.get(baseUrl + value));  
+            resolve($http.get(baseUrl + value, {'headers':headers}));  
         } 
         else     
             reject('There is an ERROR');
@@ -16,10 +17,11 @@ app.service('mainService', function($http, $q) {
       });                   
     };  
 
-    this.add= function(value, data){       
+    this.add= function(value, data){     
        console.log('infhhf');   
-        return $q(function(resolve, reject) { 
-          
+        return $q(function(resolve, reject) {    
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}     
             if(value.length!=0 && data.length!=0) {
               console.log(baseUrl + value);
                resolve($http.post(baseUrl + value , data, {'headers':headers}));                 
@@ -28,15 +30,16 @@ app.service('mainService', function($http, $q) {
                 reject('There is an ERROR');
         })             
         .catch(err =>{
-              console.log('ERROR');
+              return err
         });            
      }; 
     
     this.delete = function(value , index){
         return $q(function(resolve, reject) { 
-            if(value.length!=0) {
-               
-               resolve($http.delete(baseUrl + value +'/' + index));                 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
+            if(value.length!=0) {               
+               resolve($http.delete(baseUrl + value +'/' + index, {'headers':headers}));                 
             } 
             else     
                 reject('There is an ERROR');
@@ -48,8 +51,10 @@ app.service('mainService', function($http, $q) {
 
     this.getRankingStudents = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/ranklist'));  
+              resolve($http.get(baseUrl  + value + '/analytics/ranklist', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');
@@ -61,8 +66,10 @@ app.service('mainService', function($http, $q) {
  
     this.getRankingSchools = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/schoolranklist'));  
+              resolve($http.get(baseUrl  + value + '/analytics/schoolranklist', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');
@@ -73,8 +80,10 @@ app.service('mainService', function($http, $q) {
       };      
     this.gettopsub1 = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/topsub1'));  
+              resolve($http.get(baseUrl  + value + '/analytics/topsub1', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');
@@ -86,8 +95,10 @@ app.service('mainService', function($http, $q) {
     
     this.gettopsub2 = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/topsub2'));  
+              resolve($http.get(baseUrl  + value + '/analytics/topsub2', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');
@@ -100,8 +111,10 @@ app.service('mainService', function($http, $q) {
 
     this.gettopstudent = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/topper'));  
+              resolve($http.get(baseUrl  + value + '/analytics/topper', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');
@@ -113,8 +126,10 @@ app.service('mainService', function($http, $q) {
 
     this.gettopsubject = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/topsubject'));  
+              resolve($http.get(baseUrl  + value + '/analytics/topsubject', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');
@@ -126,8 +141,10 @@ app.service('mainService', function($http, $q) {
 
     this.gettopschool = function(value){     
         return $q(function(resolve, reject) { 
+          let token=  AuthFactory.authToken();
+          const headers = { 'content-type': 'application/json', 'Authorization':token}    
           if(value.length!=0) {
-              resolve($http.get(baseUrl  + value + '/analytics/topschool'));  
+              resolve($http.get(baseUrl  + value + '/analytics/topschool', {'headers':headers}));  
           } 
           else     
               reject('There is an ERROR');

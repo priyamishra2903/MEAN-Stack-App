@@ -7,10 +7,11 @@ function SchoolListController(mainService, $scope, Schoolfactory) {
     mainService.get(value1).then(function(response) {        
         vm.schools = response.data;              
     })   
-
+    
     mainService.get(value2).then(function(response) {
         vm.students = response.data;          
     })   
+    
     $scope.Delete=function(school) {
         console.log(school);
         let index = school._id;       

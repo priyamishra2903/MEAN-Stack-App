@@ -3,7 +3,7 @@
     
     <p>Name:<br>
     <input type="text" name="name" ng-model="name" required><br>
-    <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+    <span style="color:red; font-size: 12px;" ng-show="myForm.name.$dirty">
         <span ng-show="myForm.name.$error.required">Username is required .</span>
     </span>
 
@@ -11,7 +11,7 @@
     
     <p>Email:<br>
     <input type="email" name="email" ng-model="email" required><br>
-    <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+    <span style="color:red; font-size: 12px;" ng-show="myForm.email.$dirty && myForm.email.$invalid">
         <span ng-show="myForm.email.$error.required">Email is required.</span>
         <span ng-show="myForm.email.$error.email">Invalid email address.</span>
     </span>
@@ -20,7 +20,7 @@
     
     <p>Password<br>
     <input type="password" name="password" ng-model="password" required minlength="5"><br>
-    <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+    <span style="color:red; font-size: 12px;" ng-show="myForm.password.$dirty && myForm.password.$invalid">
     <span ng-show="myForm.password.$error.required">Password should be of min length 6</span>
     </span>
 
@@ -32,6 +32,7 @@
 
 
     <button class="btn btn-primary" type="button" ng-disabled="!name || !email || !password" ng-click = "RegisterUser()">Submit</button>
+    <div id="rgistermsg" style="color:yellow"></div>
     
     </form>
     </div>

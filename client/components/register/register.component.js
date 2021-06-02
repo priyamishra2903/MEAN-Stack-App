@@ -1,4 +1,7 @@
+
+
 function RegisterUser($scope, $uibModal, mainService) {
+    let vm = this;
 
     $scope.RegisterUser=function() {  console.log('indhfhf');
 
@@ -10,7 +13,19 @@ function RegisterUser($scope, $uibModal, mainService) {
          }
           console.log('user',user);
           value = 'user/register'
-         mainService.add(value, user); 
+         mainService.add(value, user).then(function(response) {   
+            vm.login = response.data;  
+            if(response.data.length!=null){
+                document.getElementById("rgistermsg").innerHTML = 'User Registered Successfull';             
+            }
+            else{
+               console.log(response.data, 'error');
+
+            $scope.a = false;   
+            document.getElementById("rgistermsg").innerHTML = response.data.error;  
+           }
+             
+           })  
         clearData();
     }
     function clearData() {        

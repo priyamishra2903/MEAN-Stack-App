@@ -18,13 +18,14 @@ router.post("/register", (req, res) => {
     const {errors, isValid} = validateRegisterInput(req.body);
     
     if(!isValid){
-        return res.status(400).json(errors);
+        console.log(errors);
+        return res.status(400).send(errors);        
     }
 
     User.findOne({email:req.body.email}).then(user=>{
 
         if(user){
-            return res.status(400).json({email:"Email already exists"});
+            return res.status(400).send({error:"Email already exists"});
         } else{
             const newUser = new User({
                 name:req.body.name,
@@ -82,7 +83,7 @@ router.post("/login",(req,res) => {
                 payload,
                 keys.secretOrKey,
                 {
-                 expiresIn: 31556926 
+                 expiresIn: 100000
                 },
                 (err, token) => {
                 res.json({
@@ -98,6 +99,10 @@ router.post("/login",(req,res) => {
         }
       });
     });
+});
+
+router.post("/logout",(req,res) => {
+    const {token} = req.body.token;      
 });
 
 module.exports = router;

@@ -1,4 +1,4 @@
-function LoginCtrl( $scope, mainService) {
+function LoginCtrl( $scope, mainService, AuthFactory) {
 let vm = this;
 
 
@@ -11,16 +11,19 @@ let vm = this;
    console.log('user',user);
    value = 'user/login'
    mainService.add(value, user).then(function(response) {   
-    // vm.login = response.data;  
-    if(response!=undefined){
+    vm.token = response.data.token;  
+    AuthFactory.getToken(vm.token);
+
+    console.log(response);
+    console.log(vm.token);    
+    if(response.data.token!=undefined){
         document.getElementById("loginmsg").innerHTML = 'Login Successfull';  
         $scope.a = true;
     }
     else{
     $scope.a = false;   
     document.getElementById("loginmsg").innerHTML = 'Invalid email id or password';  
-    }
-     
+    }     
    })  
 
   clearData();

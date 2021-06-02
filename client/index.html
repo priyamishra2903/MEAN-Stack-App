@@ -38,15 +38,13 @@
 <body>
     <div ng-app="mainApp" ng-controller="CRUD as pc">
     <div class="MainHeader">
-        <hr>       
-        
+        <hr>               
         <button type="button" class="btn btn-default BtnStyle" ui-sref="signup" ng-click="isCollapsed = !isCollapsed">SignUp</button>
         <button type="button" class="btn btn-default BtnStyle" ui-sref="login" ng-click="isCollapsed = !isCollapsed">Login</button>
-        <button type="button" class="btn btn-default BtnStyle" ui-sref="dashboard" ng-click="isCollapsed = !isCollapsed">dashboard</button>
-        <!-- <button type="button" class="btn btn-default BtnStyle" ng-click="pc.open()">Login</button> -->
         <hr>     
       <ui-view></ui-view>    
     </div>
+    
       
 </div>
 
