@@ -10,7 +10,6 @@ app.factory('mainFactory', function() {
 
 // factory to handle bearer token and authorization 
 app.factory('AuthFactory', function() {
-  console.log('isnide auth1');
   let factoryObject = {};
   var token1;
   factoryObject.getToken = function(token) { 
@@ -47,7 +46,6 @@ app.factory('Schoolfactory', function(mainService) {
 });
 
 //factory to Validate student data
-
 app.factory('Studentfactory', function(mainService) {
      let value ='student';  
       function Studentfactory(name, className, sub1, sub2, schoolName){

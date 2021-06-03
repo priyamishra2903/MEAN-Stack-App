@@ -1,32 +1,29 @@
 
-
 function RegisterUser($scope, $uibModal, mainService) {
     let vm = this;
    //function to register a user
-    $scope.RegisterUser=function() {  console.log('indhfhf');
+    $scope.RegisterUser=function() {    
         let user = {           
             name:$scope.name,
             email:$scope.email,
             password:$scope.password,
             password2:$scope.password2
          }
-          console.log('user',user);
-          value = 'user/register'
+         value = 'user/register'
+        //function to verify signup success 
          mainService.add(value, user).then(function(response) {   
             vm.login = response.data;  
-            if(response.data.length!=null){
+            if(response.data._id!=null){
                 document.getElementById("rgistermsg").innerHTML = 'User Registered Successfull';     //display sucessfull registration message        
             }
             else{
-               console.log(response.data, 'error');
-
-            $scope.a = false;   
+            $scope.a = false; //consition to hanle ng-show  
             document.getElementById("rgistermsg").innerHTML = response.data.error;  //to display error
            }
-             
            })  
         clearData();
     }
+    //function to clear placeholder after submit
     function clearData() {        
         $scope.name='';
         $scope.email='';

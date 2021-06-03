@@ -1,7 +1,5 @@
-const Schooldata  = require('../models/School');
-console.log('hi'); 
-
-var schools = ([
+//schools data to be inserted
+exports.schoolsArray = ([
         {   
          schoolName: "abc",
          location: "ggn"
@@ -41,13 +39,4 @@ var schools = ([
     
 ]);
 
-Schooldata.collections.insert(schools, function(err, docs) {
-    if(err){
-        return console.log(err);
-    }
-    else{
-        console.log('inserted records');
-
-    }    
-})
 

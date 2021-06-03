@@ -1,12 +1,11 @@
 
 app.service('mainService', function($http, $q, AuthFactory) {
-  const baseUrl = 'http://localhost:3000/api/'
+  const baseUrl = 'http://localhost:3000/api/'  //baseurl 
     this.get = function(value){     
-
       //get api call
       return $q(function(resolve, reject) { 
         let token=  AuthFactory.authToken();
-        const headers = { 'content-type': 'application/json', 'Authorization':token}                 
+        const headers = { 'content-type': 'application/json', 'Authorization':token}               
         if(value.length!=0) {
             console.log(baseUrl + value);
             resolve($http.get(baseUrl + value, {'headers':headers}));  
@@ -19,8 +18,7 @@ app.service('mainService', function($http, $q, AuthFactory) {
       });                   
     };  
 
-    this.add= function(value, data){     
-      
+    this.add= function(value, data){           
          //post api call
         return $q(function(resolve, reject) {    
           let token=  AuthFactory.authToken();
@@ -38,7 +36,6 @@ app.service('mainService', function($http, $q, AuthFactory) {
      }; 
     
     this.delete = function(value , index){
-
        //delete api call
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
@@ -55,7 +52,6 @@ app.service('mainService', function($http, $q, AuthFactory) {
     }; 
 
     this.getRankingStudents = function(value){     
-
       //api call to get studnets ranking
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();
@@ -71,8 +67,7 @@ app.service('mainService', function($http, $q, AuthFactory) {
         });                   
       }; 
  
-    this.getRankingSchools = function(value){   
-       
+    this.getRankingSchools = function(value){          
       // api call to schools ranking
         return $q(function(resolve, reject) { 
           let token=  AuthFactory.authToken();

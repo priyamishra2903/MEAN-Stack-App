@@ -1,16 +1,17 @@
 function AddSchoolController(mainService, $scope, Schoolfactory) { 
 
-    let value = 'school'
+    //to add school into the db
     $scope.AddData=function() {                      
        let school = {
         schoolName:$scope.schoolName,
         location:$scope.location,
        }
        let schoolobj = new Schoolfactory();
-       schoolobj.addSchooldata(school);
+       schoolobj.addSchooldata(school); //factory used to validate data
        clearData();
 
     }
+    //function to clear the placeholder text after submission
     function clearData() {
         $scope.schoolName='';
         $scope.location='';

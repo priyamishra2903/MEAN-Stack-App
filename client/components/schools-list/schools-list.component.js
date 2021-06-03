@@ -2,7 +2,6 @@ function SchoolListController(mainService, $scope, Schoolfactory) {
     var vm = this;  
     let value1 = 'school'
     let value2 =  'student'
-
     let schoolobj = new Schoolfactory();
     // to display schools list
     mainService.get(value1).then(function(response) {        
@@ -12,7 +11,7 @@ function SchoolListController(mainService, $scope, Schoolfactory) {
         vm.students = response.data;          
     })   
     
-    //to delete schools
+    //fucntion to delete schools
     $scope.Delete=function(school) {
         console.log(school);
         let index = school._id;       

@@ -1,16 +1,16 @@
 function DashboardCtrl($scope,AuthFactory) {
     let vm =this;
+    //auth check
     vm.token=  AuthFactory.authToken();
-    console.log(vm.token, 'inside dashboard');
+    //condition to display content on basis of presence of auth
     if(vm.token!=undefined){
-        $scope.a = true;
-        console.log($scope.a, 'true condition');
+        $scope.a = true; //to allow user to access dashboard
     }
     else{
-        $scope.a = false;   
-        console.log($scope.a, 'false condition');
+        $scope.a = false;//to ask user to login
     }   
-     $scope.logout=function($http) {     
+    //user can logout
+    $scope.logout=function() {     
         let token = null;   
         AuthFactory.getToken(token);    
         location.reload();    

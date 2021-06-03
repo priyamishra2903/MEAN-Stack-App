@@ -1,67 +1,49 @@
 function AddForm($scope, $uibModal, mainService) {
     var vm = this;
     const value = 'student';
+
+    //to get the students ranking list
     $scope.getstudentranking=function() {
-         console.log('inside clear me');
          mainService.getRankingStudents(value).then(function(response) {        
             vm.students = response.data;  
-            console.log('bhhh', vm.students );
         })
     } 
-
+    //to get schools ranking list
     $scope.getschoolranking=function() {
-        console.log('inside clear me');
         mainService.getRankingSchools(value).then(function(response) {        
            vm.students = response.data;  
-           console.log('bhhh', vm.students );
        })
    } 
-
+   //to get the topeper of subject 1
     $scope.getsub1topper=function() {
-        console.log('inside clear me');
         mainService.gettopsub1(value).then(function(response) {        
            vm.students = response.data;  
-           console.log('bhhh', vm.students );
        })
    } 
-
+    //to get the topeper of subject 2
    $scope.getsub2topper=function() {
-    console.log('inside clear me');
-    mainService.gettopsub2(value).then(function(response) {        
-       vm.students = response.data;  
-       console.log('bhhh', vm.students );
-   })
-
-   
- } 
-
- $scope.gettopper=function() {
-    console.log('inside clear me');
-    mainService.gettopstudent(value).then(function(response) {        
-       vm.students = response.data;  
-       console.log('bhhh', vm.students );
-   })
-
-   
- } 
-
-$scope.getsubject=function() {
-    console.log('inside clear me');
-    mainService.gettopsubject(value).then(function(response) {        
-       vm.students = response.data;  
-       console.log('bhhh', vm.students );
-   })   
- } 
-
-$scope.gettopschool=function() {
-    console.log('inside clear me');
-    mainService.gettopschool(value).then(function(response) {        
-       vm.students = response.data;  
-       console.log('bhhh', vm.students );
-   })   
- } 
-   
-    
+        mainService.gettopsub2(value).then(function(response) {        
+            vm.students = response.data;  
+       })
+    } 
+    //to get the topper combining all schools and all subjects
+    $scope.gettopper=function() {
+        mainService.gettopstudent(value).then(function(response) {        
+        vm.students = response.data;  
+       })   
+    } 
+    //to get the best performing subject
+    $scope.getsubject=function() {
+        mainService.gettopsubject(value).then(function(response) {        
+        vm.students = response.data;  
+       })   
+    } 
+    //to get the best performing schools
+    $scope.gettopschool=function() {
+        mainService.gettopschool(value).then(function(response) {        
+        vm.students = response.data;  
+       })   
+    }     
 }
  
  app.component('forms',{

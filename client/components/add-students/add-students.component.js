@@ -1,7 +1,8 @@
 function AddStudentController(mainService, $scope, Studentfactory) { 
-   let value = 'student'
-   console.log('hi');
+    
+
    let studentobj = new Studentfactory();
+   //to add student
     $scope.AddStudent=function($http) {               
         let student = {           
             name:$scope.name,
@@ -10,11 +11,12 @@ function AddStudentController(mainService, $scope, Studentfactory) {
             sub2:$scope.sub2,
             schoolName:$scope.schoolName,
          }
-
+    //factory to validate student data
         studentobj.addStudentdata(student); 
         clearData();
      }
-     
+
+    //function to clear placeholders after submit
      function clearData() {        
         $scope.name='';
         $scope.class='';

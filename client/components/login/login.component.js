@@ -1,40 +1,37 @@
 function LoginCtrl( $scope, mainService, AuthFactory) {
 let vm = this;
- //user login
- $scope.LoginUser=function() {  console.log('iside f login');
-
- let user = {           
-     email:$scope.email,
-     password:$scope.password
-  }
-   console.log('user',user);
+ //used to login user
+   $scope.LoginUser=function() {  console.log('iside f login');
+    let user = {           
+        email:$scope.email,
+        password:$scope.password
+    }
    value = 'user/login'
-   mainService.add(value, user).then(function(response) {   
+   //login success check
+   mainService.add(value, user).then(function(response) { 
+    //factory to validate auth token     
     vm.token = response.data.token;  
-    AuthFactory.getToken(vm.token); 
+    AuthFactory.getToken(vm.token);
+    //to check login success  
     if(response.data.token!=undefined){
         document.getElementById("loginmsg").innerHTML = 'Login Successfull';  //handling user login 
         $scope.a = true;
     }
-    else{
+    else{        
     $scope.a = false;   
     document.getElementById("loginmsg").innerHTML = 'Invalid email id or password';  //handling error
     }     
-   })  
-  clearData();
+   }) 
+   //to clear placeholder 
+   clearData();
 }
-
-$scope.check = function(event){
-    document.getElementById("loginmsg").innerHTML += 'hi';
-}
-
-function clearData() {        
- $scope.name='';
- $scope.email='';
- $scope.password='';
- $scope.password2='';
-} 
-
+//function to clear placeholder
+    function clearData() {        
+    $scope.name='';
+    $scope.email='';
+    $scope.password='';
+    $scope.password2='';
+    } 
 }
 
  app.component('login',{

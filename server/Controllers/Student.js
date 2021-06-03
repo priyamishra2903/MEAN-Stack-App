@@ -1,7 +1,6 @@
 const Student  = require('../models/Student');
 
 exports.getStudents = async (req, res) => {
-
     try {
       console.log('check');
       const students = await Student.find();
@@ -105,8 +104,6 @@ exports.schoolranklist= async (req, res) => {
 }
 
 
-
-
 // top 5 students of subject 1  
   exports.topsub1= async (req, res) => {
     try {     
@@ -115,8 +112,7 @@ exports.schoolranklist= async (req, res) => {
           $project: {
             marks: "$sub1",  
             name: "$name",          
-          },
-  
+          },  
         },         
         {$sort: {marks: -1}},
         {$limit: 3}

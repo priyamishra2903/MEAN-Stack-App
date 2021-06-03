@@ -3,11 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const connectDB = require("./server/DB/Conncection");
 const app = express();
-const http = require("http").createServer(app);
 const passport = require("passport");
-const flash = require("connect-flash");
 const session = require("express-session");
-const jwt = require("jsonwebtoken");
 require("dotenv").config();
 var server = require("ws").Server;
 var s = new server({ port: 5001 });
@@ -56,7 +53,6 @@ const UserRoute = require("./server/Routes/User");
 app.use(cors());
 
 //middlewares
-
 app.use(
   "/api/student",
   passport.authenticate("jwt", { session: false }),
